@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__version__ = '0.0.1' # Time-stamp: <2023-02-13T19:19:21Z>
+__version__ = '0.0.2' # Time-stamp: <2023-02-14T09:19:16Z>
 ## Language: Japanese/UTF-8
 
 import random
@@ -68,14 +68,27 @@ def calc_prob(mat, car):
 ## g についての確率の計算
 def calc_prob2(g, f, car):
     r = np.zeros(3)
-    a = np.dot(f, car)
     for i in range(3):
+        a = np.dot(f, int_vectorize(3, i))
         for j in range(3):
             r += np.dot(g, tensor_product(int_vectorize(3, j),
                                           int_vectorize(3, i))) \
                 * np.array(int_vectorize(3, i)) \
                 * a[j] * car[i]
     return np.sum(r)
+
+
+## calc_prob2 は次の形まで変形できそうだ。これが「図式」的なのだろうか？
+##
+# def calc_prob2(g, f, car):
+#     r = np.zeros(3)
+#     a = np.dot(f, car)
+#     for i in range(3):
+#         r += np.dot(g, tensor_product(a,
+#                                       int_vectorize(3, i))) \
+#             * np.array(int_vectorize(3, i)) \
+#             * car[i]
+#     return np.sum(r)
 
 
 if __name__ == "__main__":
@@ -96,4 +109,4 @@ if __name__ == "__main__":
 ##  [0.72982054 0.         1.         0.         0.27017946 1.
 ##   0.         0.         0.        ]]
 ##
-##このように g を行列で表現できている！
+# #このように g を行列で表現できている！
