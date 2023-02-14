@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__version__ = '0.0.1' # Time-stamp: <2023-02-13T19:17:43Z>
+__version__ = '0.0.3' # Time-stamp: <2023-02-14T13:32:42Z>
 ## Language: Japanese/UTF-8
 
 import random
@@ -14,7 +14,7 @@ f0 = np.array([[1, 1, 1],
                [0, 0, 0]])
 ## ボブのランダムに選ぶときの確率を p_b とする。
 p_b = random.random()
-## 中平氏の主張
+## 中平氏の主張と私が間違って思っていたもの。
 g0 = np.array([[0, 1, 1],
                [p_b, 0, 0],
                [1-p_b, 0, 0]])
@@ -32,7 +32,7 @@ def int_vectorize(radix, i):
 def calc_prob(mat, car):
     r = np.zeros(3)
     for i in range(3):
-        r += np.dot(mat, int_vectorize(3, i)) * np.array(int_vectorize(3, i)) \
+        r += np.dot(mat, int_vectorize(3, i)) * int_vectorize(3, i) \
             * car[i]
     return np.sum(r)
 
@@ -50,5 +50,5 @@ if __name__ == "__main__":
 ## 答えは次のように表示される。
 ##
 ## 0.3333333333333333
-## 0.3333333333333333
+## 0.0
 ## 0.6666666666666666

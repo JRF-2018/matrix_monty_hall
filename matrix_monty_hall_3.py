@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__version__ = '0.0.2' # Time-stamp: <2023-02-14T09:26:13Z>
+__version__ = '0.0.3' # Time-stamp: <2023-02-14T13:29:07Z>
 ## Language: Japanese/UTF-8
 
 import random
@@ -60,7 +60,7 @@ def tensor_product(x, y):
 def calc_prob(mat, car):
     r = np.zeros(3)
     for i in range(3):
-        r += np.dot(mat, int_vectorize(3, i)) * np.array(int_vectorize(3, i)) \
+        r += np.dot(mat, int_vectorize(3, i)) * int_vectorize(3, i) \
             * car[i]
     return r
 
@@ -73,7 +73,7 @@ def calc_prob2(g, f, car):
         for j in range(3):
             r += np.dot(g, tensor_product(int_vectorize(3, j),
                                           int_vectorize(3, i))) \
-                * np.array(int_vectorize(3, i)) \
+                * int_vectorize(3, i) \
                 * a[j] * car[i]
     return np.sum(r)
 
@@ -86,7 +86,7 @@ def calc_prob2(g, f, car):
 #     for i in range(3):
 #         r += np.dot(g, tensor_product(a,
 #                                       int_vectorize(3, i))) \
-#             * np.array(int_vectorize(3, i)) \
+#             * int_vectorize(3, i) \
 #             * car[i]
 #     return np.sum(r)
 
